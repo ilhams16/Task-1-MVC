@@ -50,8 +50,8 @@
 								<td>@Article.PublishDate</td>
 								<td>@(Article.IsApproved ? "Yes" : "No")</td>
 								<td>
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal-@Article.ArticleID">
-										Open Image
+									<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#imageModal-@Article.ArticleID">
+										Image
 									</button>
 									<!-- Modal Image -->
 									<div class="modal fade" id="imageModal-@Article.ArticleID" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel-@Article.ArticleID" aria-hidden="true">
@@ -69,9 +69,8 @@
 											</div>
 										</div>
 									</div>
-									@* <img src="~/Pics/@Article.Pic" alt="Article Image" height="100"><img> *@
 								</td>
-								<td><a href="/Articles/Details/@Article.ArticleID" class="btn btn-info btn-sm">details</a></td>
+								<td><a href="/Articles/Details/@Article.ArticleID" class="btn btn-info">details</a></td>
 								<td>
 									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal-@Article.ArticleID">
 										Edit
@@ -87,8 +86,13 @@
 													</button>
 												</div>
 												<div class="modal-body">
-													<form action="/Articles/Edit" method="get">
+													<form action="/Articles/Edit/@Article.ArticleID" method="post">
 														<div class="form-group">
+                                                            <div class="form-group">
+																<label for="ArticleID" hidden="hidden">
+																	<input for="ArticleID" class="form-control" name="ArticleID" value="@Article.Title" />
+																</label>
+															</div>
 															<div class="form-group">
 																<label for="Title">
 																	Title
@@ -110,7 +114,6 @@
 																		{
 																			<option value="@category.CategoryID">@category.CategoryName</option>
 																		}
-																		<!-- Populate dropdown options from your categories -->
 																	</select>
 																</label>
 															</div>
@@ -127,17 +130,17 @@
 																</label>
 															</div>
 														</div>
-													</form>
-												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-													<a href="/Articles/Edit/@Article.ArticleID" class="btn btn-primary">Edit</a>
+													<button type="submit" class="btn btn-primary">Submit</button>
+												</div>
+													</form>
 												</div>
 											</div>
 										</div>
 									</div>
 								<td>
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal-@Article.ArticleID">
+									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-@Article.ArticleID">
 										Delete
 									</button>
 									<!-- Modal Delete -->

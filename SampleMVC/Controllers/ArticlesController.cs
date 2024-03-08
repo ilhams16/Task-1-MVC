@@ -81,15 +81,17 @@ namespace SampleMVC.Controllers
         // GET: ArticlesController/Edit/5
         // public ActionResult Edit(int id, ArticleUpdateDTO updateArticle)
         // {
-        // 	updateArticle.ArticleID = id;
-        // return RedirectToAction("Index");
+		// 	updateArticle.ArticleID = id;
+		// 	_articleBLL.Update(updateArticle);
+        //     return RedirectToAction("Index");
         // }
 
         // POST: ArticlesController/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, ArticleUpdateDTO updateArticle)
+        public ActionResult Edit(int id,ArticleUpdateDTO updateArticle)
         {
-            updateArticle.ArticleID = id;
+			updateArticle.ArticleID = id;
+			_articleBLL.Update(updateArticle);
             return RedirectToAction("Index");
         }
 
