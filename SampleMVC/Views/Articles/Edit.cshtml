@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model SampleMVC.Models.EditViewModel;
+
+<div class="row">
+	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+		<h1 class="h3 mb-0 text-gray-800">Edit Article</h1>
+	</div>
+
+	<div class="col-lg-12">
+		<!-- Basic Card Example -->
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">Edit Article</h6>
+			</div>
+			<div class="card-body">
+				<div class="d-block p-3">
+					<form action="/Articles/Edit" method="post">
+						<div class="form-group">
+							<div class="form-group">
+								<label for="Title">
+									Title
+									<input for="Title" class="form-control" name="Title" />@Model.Article.Title
+								</label>
+							</div>
+							<div class="form-group">
+								<label for="Details">
+									Details
+									<input for="Details" class="form-control" name="Details" />
+								</label>
+							</div>
+							<div class="form-group">
+								<label for="CategoryID">
+									Category
+									<select name="CategoryID">
+										<option value="0">Select Categories</option>
+										@foreach (var category in Model.Categories)
+										{
+											<option value="@category.CategoryID">@category.CategoryName</option>
+										}
+										<!-- Populate dropdown options from your categories -->
+									</select>
+								</label>
+							</div>
+							<div class="d-flex">
+								<label for="IsApproved">
+									IsApproved
+									<input type="checkbox" name="IsApproved" for="IsApproved" class="form-control">@Model.Article.IsApproved
+								</label>
+							</div>
+							<div class="form-group">
+								<label for="Pic">
+									Image
+									<input for="Pic" name="Pic" class="form-control" />
+								</label>
+							</div>
+						</div>
+						<!-- Add more input fields as needed -->
+
+						<button type="submit" class="btn btn-primary">Create</button>
+					</form>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
